@@ -1,9 +1,12 @@
 import './App.css';
 import {Fragment, useEffect, useState} from "react";
-import {TextField} from '@mui/material'
-import {Component, Wrapper, Title} from "./components/Styles";
+import {Wrapper} from "./components/Styles";
+import TextArea from "./components/TextArea";
+import LineArea from "./components/LineArea";
+import MaxLengthArea from "./components/MaxLengthArea";
+import ResultArea from "./components/ResultArea";
 
-function App() {
+const App = () => {
     const [value, setValue] = useState('Sample Text')
     const [count, setCount] = useState(1)
     const [maxLength, setMaxLength] = useState(100)
@@ -15,22 +18,6 @@ function App() {
         }
         return temp;
     })
-
-    const handleChange = (event) => {
-        if (event)
-            setValue(event.target.value)
-        else
-            setValue(value);
-    }
-
-    const handleCount = (event) => {
-        setCount(Number(event.target.value.replace(/\D/g, '')));
-
-    }
-
-    const handleLength = (event) => {
-        setMaxLength(Number(event.target.value.replace(/\D/g, '')));
-    }
 
     useEffect(() => {
         const temp = []
@@ -50,36 +37,10 @@ function App() {
     return (
         <Fragment>
             <Wrapper>
-                <Component>
-                    <Title>Component 1</Title>
-                    <TextField id="sample-text"
-                               label="Sample Text"
-                               variant="outlined"
-                               value={value}
-                               onChange={handleChange}/>
-                </Component>
-                <Component>
-                    <Title>Component 2</Title>
-                    <TextField id="line-count"
-                               label="Number of Lines"
-                               variant="outlined"
-                               value={count}
-                               onChange={handleCount}/>
-                </Component>
-                <Component>
-                    <Title>Component 3</Title>
-                    <TextField id="max-length"
-                               label="Max Length"
-                               variant="outlined"
-                               value={maxLength}
-                               onChange={handleLength}/>
-                </Component>
-                <Component>
-                    <Title>Component 4</Title>
-                    <h1>Result</h1>
-                    {result.map((e) =>
-                        <p className={`${isActive ? 'Active' : null}`}>{e}</p>)}
-                </Component>
+                <TextArea value={value} setValue={setValue} />
+                <LineArea count={count} setCount={setCount} />
+                <MaxLengthArea maxLength={maxLength} setMaxLength={setMaxLength} />
+                <ResultArea result={result} setResult={setResult} isActive={isActive} />
             </Wrapper>
         </Fragment>
     );
