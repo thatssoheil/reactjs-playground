@@ -8,10 +8,12 @@ const App = () => {
 
     return (
         <Fragment>
-            <button className="button-default" onClick={toggle}>
-                Create New Article
-            </button>
-            <Modal modalStatus={modalStatus} toggle={toggle}/>
+            <div>
+                <button className="button-default" onClick={toggle}>
+                    Create New Article
+                </button>
+                <Modal modalStatus={modalStatus} toggle={toggle}/>
+            </div>
         </Fragment>
     );
 };
